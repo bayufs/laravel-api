@@ -1,0 +1,11 @@
+Tahap awal pembuatan RESTAPI adalah pembuatan blueprint dari API itu sendiri yg meliputi "
+1.Design/perancangan apa saja API Endpoint yg di butuhkan
+2.Menentukan HTTP prtokol yg di butuhkan pada setiap endpoit
+3.Menentukan endpoint mana saja yg membutuhkan authentication dan mana yg tidak
+
+pembuatan URL untuk API yg baik harus memenuhi 3 kriteria yaitu :
+1. Expresive
+2. Updatetable
+3. Intuitive
+Contoh : www.baylilab-test.net/api/v1/meeting/
+
