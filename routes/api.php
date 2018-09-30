@@ -12,22 +12,21 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
-
-
-
 Route::group(['prefix' => 'v1'], function () {
-    Route::resource('meeting', 'MeetingController', [
-        'except' => ['create','edit']
-        ]);
-       
-    Route::resource('meeting/registration', 'RegisterController', [
-        'only' => ['store','destroy']
-         ]);
-    
+
+        Route::get('meeting', 'MeetingController@index');
+        Route::post('meeting', 'MeetingController@store');
+        Route::get('meeting/{id}', 'MeetingController@show');
+
+        // authentication API menggunakan laravel passport
+            Route::group(['middleware' => 'auth:api'], function(){
+                Route::post('meeting/registration',  'RegisterController@store');
+                Route::get('user/logout', ['as' => 'logout', 'uses' => 'API\UserController@logout']);
+                Route::delete('meeting/registration/{id}',['as' => 'unregister', 'uses' => 'RegisterController@destroy']);
+            });
+
+
+
     Route::post('user/register', [
         'uses' => 'AuthController@store'
     ]);
@@ -35,4 +34,11 @@ Route::group(['prefix' => 'v1'], function () {
     Route::post('user/signin', [
     'uses' => 'AuthController@signin'
     ]);
+    Route::post('user/login', 'API\UserController@login');
+    Route::post('user/register', 'API\UserController@register');
+
+    
+    
 });
+
+

@@ -31,10 +31,10 @@ class RegisterController extends Controller
 
         $massage = [
             'massage' => 'User is already registered for meeting',
-            'user' => $user,
+            'user'    => $user,
             'meeting' => $meeting,
             'unregister' => [
-                'href' => 'api/v1/meeting/reegistration'. $meeting->id,
+                'href'   => 'api/v1/meeting/reegistration'. $meeting->id,
                 'method' => 'DELETE',
             ]
         ];
